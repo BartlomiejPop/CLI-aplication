@@ -53,7 +53,7 @@ async function addContact(name, email, phone) {
 		const data = await fs.readFile(contactsPath, "utf8");
 		const contacts = JSON.parse(data);
 		const newContact = {
-			id: "qdggE76Jtbfd9eWJHrssH",
+			id: `${Math.floor(Math.random() * 5001)}`,
 			name: name,
 			email: email,
 			phone: phone,
