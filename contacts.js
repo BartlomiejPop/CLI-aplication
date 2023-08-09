@@ -4,20 +4,24 @@ const path = require("path");
 const contactsPath = path.join(__dirname, "/db/contacts.json");
 
 // Get list of all contacts
-function listContacts() {
-	fs.readFile(contactsPath)
-		.then((data) => console.log(data.toString())) // Display the file content as a string
-		.catch((err) => console.log(err.message)); // Handle errors
+async function listContacts() {
+	try {
+		const data = await fs.readFile(contactsPath);
+		console.log(data.toString()); // Display the file content as a string
+	} catch (err) {
+		console.log(err.message);
+	}
 }
 
 // Get a contact by ID
-function getContactById(contactId) {
-	fs.readFile(contactsPath)
-		.then((data) => JSON.parse(data)) // Parse the content as a JSON object
-		.then((parsedData) =>
-			console.log(parsedData.filter((el) => el.id === contactId))
-		) // Filter and display the contact with the given ID
-		.catch((err) => console.log(err.message)); // Handle errors
+async function getContactById(contactId) {
+	try {
+		const data = await fs.readFile(contactsPath);
+		const parsedData = JSON.parse(data); // Parse the content as a JSON object
+		console.log(parsedData.filter((el) => el.id === contactId)); // Filter and display the contact with the given ID
+	} catch (err) {
+		console.log(err.message);
+	}
 }
 
 // Remove a contact by ID
